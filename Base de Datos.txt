@@ -1,0 +1,79 @@
+CREATE DATABASE mantenimiento /*!40100 DEFAULT CHARACTER SET latin1 */;
+--user mantenimiento;
+CREATE TABLE articulos (
+  ID_ARTICULO NUMERIC(11) NOT NULL,
+  TIPO_ARTICULO varchar(45) NOT NULL,
+  PRIMARY KEY  (ID_ARTICULO),
+ -- UNIQUE KEY NUMERO_ARTICULO_UNIQUE (ID_ARTICULO)
+  CONSTRAINT NUMERO_ARTICULO UNIQUE (ID_ARTICULO)
+)-- ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE clientes (
+  ID_CLIENTE numeric(11) NOT NULL,
+  NOMBRE varchar(45) default NULL,
+  APELLIDO varchar(45) default NULL,
+  DIRECCION varchar(45) default NULL,
+  NUMERO_TEL varchar(45) default NULL,
+  PRIMARY KEY  (ID_CLIENTE),
+--  UNIQUE KEY ID_CLIENTE_UNIQUE (ID_CLIENTE)
+    CONSTRAINT  ID_CLIENTE UNIQUE (ID_CLIENTE)
+)-- ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE equipos (
+  FICHA numeric(11) NOT NULL,
+  MARCA varchar(40) default NULL,
+ MODELO varchar(40) default NULL,
+  ANIO numeric(11) default NULL,
+  SERIE varchar(45) default NULL,
+  COLOR varchar(45) default NULL,
+  FECHA_CREACION varchar(45) default NULL,
+  ESTADO varchar(45) default NULL,
+  TIPO_ARTICULO varchar(45) default NULL,
+  PRIMARY KEY  (FICHA),
+  --UNIQUE KEY FICHA_UNIQUE (FICHA)
+  CONSTRAINT FICHA UNIQUE (FICHA)
+) --ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='En esta tabla se almacenan todos los datos de cada camion.';
+
+CREATE TABLE materiales (
+  --N numeric(11) NOT NULL auto_increment,
+  N int identity(1,1) NOT NULL ,
+  NUMERO_ORDEN numeric(11) default NULL,
+  CANTIDAD numeric(11) default NULL,
+  DESCRIPCION varchar(45) default NULL,
+  PRECIO numeric(11) default NULL,
+  PRECIO_TOTAL numeric(11) default NULL,
+  PRIMARY KEY  (N),
+ -- UNIQUE KEY NUMERO_ORDEN_UNIQUE (N)
+  CONSTRAINT N UNIQUE (N)
+) --ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+
+CREATE TABLE servicios (
+  NUMERO_ORDEN numeric(11) NOT NULL,
+  FICHA numeric(11) default NULL,
+  MARCA varchar(45) default NULL,
+  ARTICULO varchar(45) default NULL,
+  TIPO_MANTENIMIENTO varchar(100) default NULL,
+  DESCRIPCION varchar(200) default NULL,
+  ESTADO_ORDEN varchar(45) default NULL,
+  ID_CLIENTE numeric(11) default NULL,
+  HORA_ENTRADA varchar(45) default NULL,
+  HORA_SALIDA varchar(45) default NULL,
+  FECHA_ENTRADA varchar(45) default NULL,
+  FECHA_SALIDA varchar(45) default NULL,
+  ID_ESTADO numeric(11) default NULL,
+  PRIMARY KEY  (NUMERO_ORDEN),
+ -- UNIQUE KEY NUMERO_ORDEN_UNIQUE (NUMERO_ORDEN)
+ CONSTRAINT  NUMERO_ORDEN UNIQUE (NUMERO_ORDEN)
+) --ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE usuarios (
+  NOMBRE_USUARIO varchar(45) NOT NULL,
+  CLAVE_ACCESO varchar(45) NOT NULL,
+  PRIMARY KEY  (NOMBRE_USUARIO),
+  CONSTRAINT NOMBRE_USUARIO UNIQUE(NOMBRE_USUARIO)
+)-- ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+select  * from usuarios
+insert into usuarios values ('admin', 'admin');
+
